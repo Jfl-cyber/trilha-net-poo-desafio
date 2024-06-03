@@ -1,10 +1,63 @@
-<Project Sdk="Microsoft.NET.Sdk">
+using System;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>disable</Nullable>
-  </PropertyGroup>
+namespace Celulares
+{
+    // Classe abstrata Smartphone
+    abstract class Smartphone
+    {
+        // Propriedades
+        public string Numero { get; set; }
+        public string Modelo { get; set; }
+        public string IMEI { get; set; }
+        public int Memoria { get; set; }
 
-</Project>
+        // Método abstrato para instalar aplicativos
+        public abstract void InstalarAplicativo(string nome);
+
+        // Métodos comuns
+        public void Ligar()
+        {
+            Console.WriteLine("Ligando...");
+        }
+
+        public void ReceberLigacao()
+        {
+            Console.WriteLine("Recebendo ligação...");
+        }
+    }
+
+    // Classe Nokia que herda de Smartphone
+    class Nokia : Smartphone
+    {
+        // Implementação do método para instalar aplicativos
+        public override void InstalarAplicativo(string nome)
+        {
+            Console.WriteLine($"Instalando o aplicativo {nome} no Nokia...");
+        }
+    }
+
+    // Classe Iphone que herda de Smartphone
+    class Iphone : Smartphone
+    {
+        // Implementação do método para instalar aplicativos
+        public override void InstalarAplicativo(string nome)
+        {
+            Console.WriteLine($"Instalando o aplicativo {nome} no iPhone...");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Exemplo de uso
+            Nokia nokia = new Nokia();
+            nokia.Modelo = "Nokia 3310";
+            nokia.InstalarAplicativo("WhatsApp");
+
+            Iphone iphone = new Iphone();
+            iphone.Modelo = "iPhone 12";
+            iphone.InstalarAplicativo("Instagram");
+        }
+    }
+}
